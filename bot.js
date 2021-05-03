@@ -21,7 +21,7 @@ client.on('guildMemberAdd', async member => {
     const ranges = JSON.parse((await fs.promises.readFile('./ranges.json')).toString());
     inrange = false;
     ranges.forEach(range => {
-        if (BigInt(range[0]) <= BigInt(member.id) <= BigInt(range[1]) || BigInt(range[1]) <= BigInt(member.id) <= BigInt(range[0])) {
+        if ((BigInt(range[0]) <= BigInt(member.id) && BigInt(member.id) <= BigInt(range[1])) || (BigInt(range[1]) <= BigInt(member.id) && BigInt(member.id) <= BigInt(range[0]))) {
             inrange = true;
         }
     });
